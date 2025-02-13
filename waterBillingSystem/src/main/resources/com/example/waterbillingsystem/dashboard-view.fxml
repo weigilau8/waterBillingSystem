@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Box?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="dashboardPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #F2F2F2;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.waterbillingsystem.Controllers.DashboardController">
+    <top>
+        <AnchorPane prefHeight="38.0" prefWidth="1280.0" style="-fx-background-color: #f2f2f2;" BorderPane.alignment="CENTER">
+            <children>
+
+              <!-- Top Bar with Welcome Message and User Info -->
+                <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1282.0" spacing="20">
+                    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="100.0">
+                        <children>
+                            <ImageView fitHeight="39.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../../img/wbs.png" />
+                                </image>
+                            </ImageView>
+                        </children>
+                    </VBox>
+                    <VBox prefHeight="61.0" prefWidth="807.0">
+                        <children>
+                            <Region prefHeight="64.0" prefWidth="796.0" />
+                        </children>
+                    </VBox>
+                    <VBox alignment="CENTER_RIGHT" prefHeight="78.0" prefWidth="265.0">
+                        <children>
+                            <Label text="Login as" />
+                                <Label fx:id="theUserLogged" style="-fx-font-size: 24px;" text="UserType">
+                                <font>
+                                    <Font size="10.0" />
+                                </font>
+                            </Label>
+                        </children>
+                    </VBox>
+                    <VBox alignment="CENTER" prefHeight="61.0" prefWidth="55.0">
+                        <children>
+                            <Button onAction="#handleLogout" style="-fx-background-color: transparent;">
+                                <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../../../img/logout.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                            </Button>
+                        </children>
+                   </VBox>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </top>
+    <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane layoutX="18.0" layoutY="15.0" prefHeight="706.0" prefWidth="1244.0" style="-fx-background-color: #f2f2f2;" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Dashboard">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <PieChart fx:id="dashPie" layoutX="35.0" layoutY="37.0" prefHeight="544.0" prefWidth="592.0" title="This Month Bill Status" />
+                              <Box depth="100" height="500.0" layoutX="922.0" layoutY="289.0" styleClass="dashCustomer" width="500.0" />
+                              <Label layoutX="698.0" layoutY="57.0" text="Customers" />
+                              <Label layoutX="699.0" layoutY="81.0" text="Number of Customers:" />
+                              <Label fx:id="custNumber" layoutX="1100.0" layoutY="83.0" text="Label" />
+                           </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Customer">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <AnchorPane layoutY="-4.0" prefHeight="57.0" prefWidth="1244.0">
+                                 <children>
+                                    <Button fx:id="addCustomerButton" layoutX="1137.0" layoutY="16.0" mnemonicParsing="false" onAction="#onAddCustomer" style="-fx-background-color: #3498db;" text="Add Customer" textFill="WHITE" />
+                                 </children>
+                              </AnchorPane>
+                              <TableView fx:id="customerTable" layoutX="8.0" layoutY="48.0" prefHeight="470.0" prefWidth="1229.0">
+                                <columns>
+                                    <TableColumn fx:id="custCustomerID" prefWidth="29.019012451171875" text="ID" />
+                                  <TableColumn fx:id="custFirstName" prefWidth="111.26496124267578" text="First name" />
+                                  <TableColumn fx:id="custLastName" prefWidth="116.02984619140625" text="Last name" />
+                                    <TableColumn fx:id="custEmail" prefWidth="147.53802490234375" text="Email" />
+                                    <TableColumn fx:id="custPhone" prefWidth="120.02713012695312" text="Phone" />
+                                    <TableColumn fx:id="custAddress" minWidth="6.80841064453125" prefWidth="163.92608642578125" text="Address" />
+                                    <TableColumn fx:id="custCity" minWidth="5.57073974609375" prefWidth="160.0738525390625" text="City" />
+                                    <TableColumn fx:id="custState" prefWidth="115.03802490234375" text="State" />
+                                    <TableColumn fx:id="custZipCode" prefWidth="89.05706787109375" text="Zip code" />
+                                    <TableColumn fx:id="custServiceCenter" prefWidth="172.2293701171875" text="Service Center" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                  <Tab text="Billing">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="billTable" layoutX="14.0" layoutY="45.0" prefHeight="252.0" prefWidth="1217.0">
+                                <columns>
+                                    <TableColumn fx:id="billId" prefWidth="36.97410202026367" text="ID" />
+                                    <TableColumn fx:id="billCustomerName" prefWidth="151.60520935058594" text="Customer Name" />
+                                    <TableColumn fx:id="billDate" prefWidth="151.60520935058594" text="Bill Date" />
+                                    <TableColumn fx:id="billDueDate" prefWidth="151.60520935058594" text="Due Date" />
+                                    <TableColumn fx:id="billUnitConsumed" prefWidth="151.60520935058594" text="Unit Consumed" />
+                                    <TableColumn fx:id="billRatePerUnit" prefWidth="151.60520935058594" text="Rate/Unit" />
+                                    <TableColumn fx:id="billFixedCharge" prefWidth="151.60520935058594" text="Fixed Charge" />
+                                    <TableColumn fx:id="billStatus" prefWidth="151.60520935058594" text="Status" />
+                                </columns>
+                              </TableView>
+                              <Label layoutX="19.0" layoutY="17.0" text="Total Paid:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="totalPaid" layoutX="81.0" layoutY="17.0" text="Label" />
+                              <Label layoutX="229.0" layoutY="17.0" text="Total Pending:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="totalPending" layoutX="312.0" layoutY="17.0" text="Label" />
+                              <Label layoutX="460.0" layoutY="17.0" text="Total Overdue:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font></Label>
+                              <Label fx:id="totalDue" layoutX="546.0" layoutY="18.0" text="Label" />
+                           </children></AnchorPane>
+                     </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+         </children></AnchorPane>
+    </center>
+</BorderPane>
